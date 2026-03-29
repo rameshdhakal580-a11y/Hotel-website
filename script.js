@@ -6,28 +6,33 @@ document.getElementById("darkToggle").onclick = () => {
   document.body.classList.toggle("dark");
 };
 
-// STICKY NAVBAR & ACTIVE LINKS
-window.addEventListener("scroll", () => {
-  const navbar = document.getElementById("navbar");
-  navbar.classList.toggle("sticky", window.scrollY > 50);
+// STICKY NAVBAR
+window.onscroll = () => {
+  document.getElementById("navbar").classList.toggle("sticky", window.scrollY > 50);
+  fadeInSections();
+};
 
-  const sections = document.querySelectorAll("section, .welcome");
-  const scrollPos = window.scrollY + navbar.offsetHeight + 5;
-  sections.forEach(sec => {
-    const top = sec.offsetTop;
-    const bottom = top + sec.offsetHeight;
-    const id = sec.id || "home";
-    const navLink = document.querySelector(`nav a[href="#${id}"]`);
-    if(scrollPos >= top && scrollPos < bottom) {
-      document.querySelectorAll("nav a").forEach(a => a.classList.remove("active"));
-      if(navLink) navLink.classList.add("active");
-    }
+// FADE-IN SECTIONS
+function fadeInSections() {
+  const sections = document.querySelectorAll(".fade-section");
+  const triggerBottom = window.innerHeight * 0.9;
+  sections.forEach(section => {
+    const top = section.getBoundingClientRect().top;
+    if(top < triggerBottom) section.classList.add("visible");
   });
-});
+}
+fadeInSections();
 
 // FAKE BOOKING FORM ALERT
 document.querySelector(".booking-form").addEventListener("submit", function(e){
   e.preventDefault();
-  alert("Thank you! Your booking request has been received (this is a demo).");
+  alert("Thank you! Your booking request has been received (demo).");
   this.reset();
+});
+
+// MOBILE MENU TOGGLE
+const menuToggle = document.getElementById("menuToggle");
+const navLinks = document.getElementById("nav-links");
+menuToggle.addEventListener("click", () => {
+  navLinks.classList.toggle("show");
 });
