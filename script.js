@@ -9,30 +9,32 @@ document.getElementById("darkToggle").onclick = () => {
 // STICKY NAVBAR
 window.onscroll = () => {
   document.getElementById("navbar").classList.toggle("sticky", window.scrollY > 50);
-  fadeInSections();
 };
 
-// FADE-IN SECTIONS
-function fadeInSections() {
-  const sections = document.querySelectorAll(".fade-section");
-  const triggerBottom = window.innerHeight * 0.9;
-  sections.forEach(section => {
-    const top = section.getBoundingClientRect().top;
-    if(top < triggerBottom) section.classList.add("visible");
+// SMOOTH SCROLL OFFSET
+document.querySelectorAll('nav a').forEach(link => {
+  link.addEventListener('click', function(e){
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    const offset = target.offsetTop - document.getElementById("navbar").offsetHeight;
+    window.scrollTo({ top: offset, behavior: 'smooth' });
+
+    // Close mobile menu after click
+    document.getElementById('nav-links').classList.remove('active');
   });
-}
-fadeInSections();
+});
+
+// MOBILE MENU TOGGLE
+document.querySelector('.nav-toggle').onclick = () => {
+  document.getElementById('nav-links').classList.add('active');
+};
+document.getElementById('nav-close').onclick = () => {
+  document.getElementById('nav-links').classList.remove('active');
+};
 
 // FAKE BOOKING FORM ALERT
 document.querySelector(".booking-form").addEventListener("submit", function(e){
   e.preventDefault();
-  alert("Thank you! Your booking request has been received (demo).");
+  alert("Thank you! Your booking request has been received (this is a demo).");
   this.reset();
-});
-
-// MOBILE MENU TOGGLE
-const menuToggle = document.getElementById("menuToggle");
-const navLinks = document.getElementById("nav-links");
-menuToggle.addEventListener("click", () => {
-  navLinks.classList.toggle("show");
 });
