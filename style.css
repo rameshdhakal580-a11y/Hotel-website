@@ -50,6 +50,54 @@ body.dark {
 }
 body.dark header { background: #222; }
 body.dark nav a { color: white; }
+body.dark .welcome { background: #222; color: white; }
+body.dark .room-card { background: #222; color: white; }
+body.dark .review-card { background: #222; color: white; }
+
+/* DARK MODE TOGGLE SWITCH */
+.dark-mode-toggle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 25px;
+}
+
+.switch input { display: none; }
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: #ccc;
+  transition: .4s;
+  border-radius: 25px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 19px; width: 19px;
+  left: 3px; bottom: 3px;
+  background-color: white;
+  transition: .4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: #ff6600;
+}
+
+input:checked + .slider:before {
+  transform: translateX(25px);
+}
 
 /* HERO VIDEO */
 .hero { position: relative; width: 100%; height: 80vh; overflow: hidden; }
@@ -109,16 +157,12 @@ footer { text-align: center; padding: 15px; background: #222; color: white; marg
   }
   #nav-links.active { right: 0; }
   #nav-close { display: block; }
+
+  .hero { height: 50vh; }
 }
 
 @media (max-width: 480px) {
   .welcome h1 { font-size: 1.5em; }
   .welcome p { font-size: 0.9em; }
   .booking-form { width: 90%; }
-}
-
-/* MOBILE HERO IMAGE */
-@media (max-width: 768px) {
-  .hero-video { display: none; }
-  .hero { background: url('images/hero_mobile.jpg') center/cover no-repeat; height: 40vh; }
 }
