@@ -27,12 +27,20 @@
   <div class="nav-toggle">
     <span>&#9776;</span>
   </div>
-  <button id="darkToggle">🌙</button>
+
+  <!-- DARK MODE TOGGLE -->
+  <div class="dark-mode-toggle">
+    <span id="mode-label">Light Mode</span>
+    <label class="switch">
+      <input type="checkbox" id="darkToggle">
+      <span class="slider round"></span>
+    </label>
+  </div>
 </header>
 
 <!-- HERO VIDEO -->
 <section class="hero" id="home">
-  <video autoplay muted loop class="hero-video">
+  <video autoplay muted loop playsinline class="hero-video">
     <source src="videos/hotel.mp4" type="video/mp4">
   </video>
 </section>
