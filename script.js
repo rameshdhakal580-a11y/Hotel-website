@@ -1,10 +1,14 @@
 // LOADER
 window.onload = () => document.getElementById("loader").style.display = "none";
 
-// DARK MODE
-document.getElementById("darkToggle").onclick = () => {
-  document.body.classList.toggle("dark");
-};
+// DARK MODE TOGGLE
+const darkToggle = document.getElementById("darkToggle");
+const modeLabel = document.getElementById("mode-label");
+
+darkToggle.addEventListener("change", () => {
+  document.body.classList.toggle("dark", darkToggle.checked);
+  modeLabel.textContent = darkToggle.checked ? "Dark Mode" : "Light Mode";
+});
 
 // STICKY NAVBAR
 window.onscroll = () => {
